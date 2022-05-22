@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.penglecode</groupId>
+    <artifactId>codeforce-samples</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>codeforce-samples</name>
+    <description>基于codeforce底座的一系列样例项目</description>
+
+    <properties>
+        <springboot.version>2.4.5</springboot.version>
+        <springcloud.version>2020.0.3</springcloud.version>
+        <codeforce.version>2.4</codeforce.version>
+
+        <mybatis-springboot.version>2.1.4</mybatis-springboot.version>
+        <mybatis-tiny.version>3.5</mybatis-tiny.version>
+        <mybatis-springboot-mds.version>2.1</mybatis-springboot-mds.version>
+        <mysql.version>8.0.25</mysql.version>
+        <swagger3.version>2.1.12</swagger3.version>
+        <springdoc.version>1.6.4</springdoc.version>
+        <knife4j.version>3.0.3</knife4j.version>
+
+        <!--
+         | Maven confirmation
+        -->
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.testTarget>${java.version}</maven.compiler.testTarget>
+        <maven.compiler.testSource>${java.version}</maven.compiler.testSource>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- codeforce-common-base -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>codeforce-common-base</artifactId>
+                <version>${codeforce.version}</version>
+            </dependency>
+
+            <!-- codeforce-common-model -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>codeforce-common-model</artifactId>
+                <version>${codeforce.version}</version>
+            </dependency>
+
+            <!-- codeforce-common-domain -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>codeforce-common-domain</artifactId>
+                <version>${codeforce.version}</version>
+            </dependency>
+
+            <!-- codeforce-common-core -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>codeforce-common-core</artifactId>
+                <version>${codeforce.version}</version>
+            </dependency>
+
+            <!-- codeforce-common-config -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>codeforce-common-config</artifactId>
+                <version>${codeforce.version}</version>
+            </dependency>
+
+            <!-- mybatis-tiny -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>mybatis-tiny-base</artifactId>
+                <version>${mybatis-tiny.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>mybatis-tiny-core</artifactId>
+                <version>${mybatis-tiny.version}</version>
+            </dependency>
+
+            <!-- mybatis-springboot-mds-starter -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>mybatis-springboot-mds-starter</artifactId>
+                <version>${mybatis-springboot-mds.version}</version>
+            </dependency>
+
+            <!-- mybatis-spring-boot-starter -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-springboot.version}</version>
+            </dependency>
+
+            <!-- swagger-annotations -->
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger3.version}</version>
+            </dependency>
+
+            <!-- springdoc -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+
+            <!-- knife4j-springdoc-ui (仅仅使用knife4j提供的UI) -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-springdoc-ui</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
+            <!-- 覆盖springboot默认的mysql驱动版本 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- spring-boot-dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring-cloud-dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${springcloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!--
+                    设置新的版本号1.2.0-SNAPSHOT,则在根项目pom.xml文件夹下执行: mvn versions:set -DnewVersion=1.2.0-SNAPSHOT
+                -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.8.1</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <resources>
+            <!-- 处理src/main/java包下的资源文件 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yaml</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.ftl</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.png</include>
+                    <include>**/*.gif</include>
+                </includes>
+                <!-- false:不进行maven属性替换 -->
+                <filtering>false</filtering>
+            </resource>
+            <!-- 处理src/main/resources下面的资源文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- true:进行maven属性替换 -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <modules>
+        <module>codeforce-sample1</module>
+    </modules>
+</project>

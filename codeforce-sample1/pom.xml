@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.penglecode</groupId>
+        <artifactId>codeforce-samples</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>codeforce-sample1</artifactId>
+    <packaging>pom</packaging>
+    <name>codeforce-sample1</name>
+    <description>样例项目1(基于DDD传统四层架构的完整示例)</description>
+
+    <properties>
+        <codeforce-sample1.version>${project.version}</codeforce-sample1.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- codeforce-sample1-api-consumer -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-api-consumer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-api-provider -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-api-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-api-runtime -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-api-runtime</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-app-service -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-app-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-app-amq -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-app-amq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-app-job -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-app-job</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-domain-model -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-domain-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-domain-service-sdk -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-domain-service-sdk</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-domain-service-runtime -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-domain-service-runtime</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-infras-dal -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-infras-dal</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- codeforce-sample1-infras-common -->
+            <dependency>
+                <groupId>com.penglecode</groupId>
+                <artifactId>codeforce-sample1-infras-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <!-- 集成测试环境 -->
+        <profile>
+            <id>uat</id>
+            <properties>
+                <spring.profiles.active>uat</spring.profiles.active>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>prd</id>
+            <properties>
+                <spring.profiles.active>prd</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+    <modules>
+        <module>codeforce-sample1-api</module>
+        <module>codeforce-sample1-app</module>
+        <module>codeforce-sample1-domain</module>
+        <module>codeforce-sample1-infras</module>
+        <module>codeforce-sample1-starter</module>
+    </modules>
+</project>
