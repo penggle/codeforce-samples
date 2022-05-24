@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0
  */
 @Configuration
-@ComponentScan(basePackages="org.springframework.boot.autoconfigure.codeforce.defaults")
+@ComponentScan(basePackages="com.penglecode.codeforce.common.config.defaults")
 public class DefaultCodeforceConfiguration {
 }
