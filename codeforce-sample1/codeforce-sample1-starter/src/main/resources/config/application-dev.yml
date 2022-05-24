@@ -6,3 +6,18 @@ spring:
             username: root
             password: 123456
             url: jdbc:mysql://127.0.0.1:3306/codeforce_samples?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8&useSSL=false&rewriteBatchedStatements=true&useCursorFetch=true
+
+#swagger配置
+springdoc:
+    #提供API的服务地址
+    #api-servers: http://127.0.0.1:8080
+    #是否忽略没有被Swagger-V3注解标注的接口?
+    skip-unannotated-apis: true
+    #匹配指定模式的API接口将会被展示
+    api-patterns: /api/**
+    #是否启用API-DOCS(默认/v3/api-docs)
+    api-docs:
+        enabled: true
+    #是否启用Swagger-UI(默认/swagger-ui.html)
+    swagger-ui:
+        enabled: true

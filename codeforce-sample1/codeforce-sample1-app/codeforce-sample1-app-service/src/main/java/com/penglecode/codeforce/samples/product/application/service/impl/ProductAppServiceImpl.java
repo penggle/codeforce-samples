@@ -44,27 +44,28 @@ public class ProductAppServiceImpl implements ProductAppService {
     @Override
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
     public void createProduct(ProductAggregate product) {
+        ValidationAssert.notNull(product, MessageSupplier.ofRequiredParameter("product"));
+        BeanValidator.validateBean(product, ProductAggregate::getProductExtra, ProductAggregate::getProductSaleSpecs, ProductAggregate::getProductSaleStocks);
         productBaseInfoService.createProductBase(product);
+
         ProductExtraInfo productExtra = product.getProductExtra();
-        if(productExtra != null) {
-            productExtra.setProductId(product.getProductId());
-            productExtraInfoService.createProductExtra(productExtra);
-        }
+        productExtra.setProductId(product.getProductId());
+        productExtraInfoService.createProductExtra(productExtra);
+
         List<ProductSaleSpec> productSaleSpecs = product.getProductSaleSpecs();
-        if(!CollectionUtils.isEmpty(productSaleSpecs)) {
-            productSaleSpecs.forEach(item -> item.setProductId(product.getProductId()));
-            productSaleSpecService.batchCreateProductSaleSpec(productSaleSpecs);
-        }
+        productSaleSpecs.forEach(item -> item.setProductId(product.getProductId()));
+        productSaleSpecService.createProductSaleSpecs(productSaleSpecs);
+
         List<ProductSaleStock> productSaleStocks = product.getProductSaleStocks();
-        if(!CollectionUtils.isEmpty(productSaleStocks)) {
-            productSaleStocks.forEach(item -> item.setProductId(product.getProductId()));
-            productSaleStockService.batchCreateProductSaleStock(productSaleStocks);
-        }
+        productSaleStocks.forEach(item -> item.setProductId(product.getProductId()));
+        productSaleStockService.createProductSaleStocks(productSaleStocks);
     }
 
     @Override
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
     public void modifyProductById(ProductAggregate product) {
+        ValidationAssert.notNull(product, MessageSupplier.ofRequiredParameter("product"));
+        BeanValidator.validateBean(product, ProductAggregate::getProductExtra, ProductAggregate::getProductSaleSpecs, ProductAggregate::getProductSaleStocks);
         productBaseInfoService.modifyProductBaseById(product);
         ProductExtraInfo productExtra = product.getProductExtra();
         if(productExtra != null) {
@@ -74,12 +75,12 @@ public class ProductAppServiceImpl implements ProductAppService {
         List<ProductSaleSpec> transientProductSaleSpecs = product.getProductSaleSpecs();
         if(!CollectionUtils.isEmpty(transientProductSaleSpecs)) {
             List<ProductSaleSpec> persistedProductSaleSpecs = productSaleSpecService.getProductSaleSpecsByProductId(product.getProductId());
-            DomainServiceHelper.batchMergeEntityObjects(transientProductSaleSpecs, persistedProductSaleSpecs, ProductSaleSpec::identity, productSaleSpecService::batchCreateProductSaleSpec, productSaleSpecService::batchModifyProductSaleSpecById, productSaleSpecService::removeProductSaleSpecByIds);
+            DomainServiceHelper.batchMergeEntityObjects(transientProductSaleSpecs, persistedProductSaleSpecs, ProductSaleSpec::identity, productSaleSpecService::createProductSaleSpecs, productSaleSpecService::modifyProductSaleSpecsById, productSaleSpecService::removeProductSaleSpecByIds);
         }
         List<ProductSaleStock> transientProductSaleStocks = product.getProductSaleStocks();
         if(!CollectionUtils.isEmpty(transientProductSaleStocks)) {
             List<ProductSaleStock> persistedProductSaleStocks = productSaleStockService.getProductSaleStocksByProductId(product.getProductId());
-            DomainServiceHelper.batchMergeEntityObjects(transientProductSaleStocks, persistedProductSaleStocks, ProductSaleStock::identity, productSaleStockService::batchCreateProductSaleStock, productSaleStockService::batchModifyProductSaleStockById, productSaleStockService::removeProductSaleStockByIds);
+            DomainServiceHelper.batchMergeEntityObjects(transientProductSaleStocks, persistedProductSaleStocks, ProductSaleStock::identity, productSaleStockService::createProductSaleStocks, productSaleStockService::modifyProductSaleStocksById, productSaleStockService::removeProductSaleStockByIds);
         }
     }
 

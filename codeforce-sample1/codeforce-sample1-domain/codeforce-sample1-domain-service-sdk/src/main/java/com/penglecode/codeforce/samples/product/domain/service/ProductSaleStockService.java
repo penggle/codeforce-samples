@@ -29,7 +29,7 @@ public interface ProductSaleStockService {
      *
      * @param productSaleStocks     - 被保存的领域对象集合
      */
-    void batchCreateProductSaleStock(List<ProductSaleStock> productSaleStocks);
+    void createProductSaleStocks(List<ProductSaleStock> productSaleStocks);
 
     /**
      * 根据ID修改商品销售库存信息
@@ -43,7 +43,7 @@ public interface ProductSaleStockService {
      *
      * @param productSaleStocks     - 被保存的领域对象集合(id字段必须有值)
      */
-    void batchModifyProductSaleStockById(List<ProductSaleStock> productSaleStocks);
+    void modifyProductSaleStocksById(List<ProductSaleStock> productSaleStocks);
 
     /**
      * 根据ID删除商品销售库存信息

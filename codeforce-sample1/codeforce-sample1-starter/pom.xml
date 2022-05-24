@@ -13,6 +13,12 @@
     <description>示例SpringBoot启动模块</description>
 
     <dependencies>
+        <!-- codeforce-common-config -->
+        <dependency>
+            <groupId>io.github.penggle</groupId>
+            <artifactId>codeforce-common-config</artifactId>
+        </dependency>
+
         <!-- codeforce-sample1-api-runtime -->
         <dependency>
             <groupId>com.penglecode</groupId>

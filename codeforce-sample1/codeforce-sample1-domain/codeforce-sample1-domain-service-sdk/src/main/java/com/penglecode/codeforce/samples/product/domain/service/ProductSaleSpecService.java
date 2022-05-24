@@ -29,7 +29,7 @@ public interface ProductSaleSpecService {
      *
      * @param productSaleSpecs     - 被保存的领域对象集合
      */
-    void batchCreateProductSaleSpec(List<ProductSaleSpec> productSaleSpecs);
+    void createProductSaleSpecs(List<ProductSaleSpec> productSaleSpecs);
 
     /**
      * 根据ID修改商品销售规格信息
@@ -43,7 +43,7 @@ public interface ProductSaleSpecService {
      *
      * @param productSaleSpecs     - 被保存的领域对象集合(id字段必须有值)
      */
-    void batchModifyProductSaleSpecById(List<ProductSaleSpec> productSaleSpecs);
+    void modifyProductSaleSpecsById(List<ProductSaleSpec> productSaleSpecs);
 
     /**
      * 根据ID删除商品销售规格信息

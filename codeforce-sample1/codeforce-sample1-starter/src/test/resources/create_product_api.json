@@ -1,0 +1,202 @@
+{
+	"productId": 1,
+	"productName": "24期免息【当天发】Huawei/华为Mate40 5G手机官方旗舰店50pro直降mate40e官网30正品4G鸿蒙正品30全网通",
+	"productUrl": "https://detail.tmall.com/item.htm?id=633658852628",
+	"productTags": "华为手机 5G mate40pro",
+	"productType": 1,
+	"auditStatus": 0,
+	"onlineStatus": 0,
+	"shopId": 111212422,
+	"remark": "当天发货 保修3年 送影视会员 咨询客服",
+	"createTime": "2022-05-24 14:36:26",
+	"updateTime": "2022-05-24 14:36:26",
+	"productTypeName": "实物商品",
+	"auditStatusName": "待审核",
+	"onlineStatusName": "已下架",
+	"auditStatuses": null,
+	"startCreateTime": null,
+	"endCreateTime": null,
+	"productExtra": {
+		"productDetails": "商品详情",
+		"productSpecifications": "商品规格参数",
+		"productServices": "商品服务"
+	},
+	"productSaleSpecs": [
+		{
+			"specNo": "11",
+			"specName": "4G全网通",
+			"specIndex": 1,
+			"remark": null
+		},
+		{
+			"specNo": "12",
+			"specName": "5G全网通",
+			"specIndex": 2,
+			"remark": null
+		},
+		{
+			"specNo": "21",
+			"specName": "亮黑色",
+			"specIndex": 1,
+			"remark": null
+		},
+		{
+			"specNo": "22",
+			"specName": "釉白色",
+			"specIndex": 2,
+			"remark": null
+		},
+		{
+			"specNo": "23",
+			"specName": "秘银色",
+			"specIndex": 3,
+			"remark": null
+		},
+		{
+			"specNo": "24",
+			"specName": "夏日胡杨",
+			"specIndex": 4,
+			"remark": null
+		},
+		{
+			"specNo": "25",
+			"specName": "秋日胡杨",
+			"specIndex": 5,
+			"remark": null
+		},
+		{
+			"specNo": "31",
+			"specName": "8+128GB",
+			"specIndex": 1,
+			"remark": null
+		},
+		{
+			"specNo": "32",
+			"specName": "8+256GB",
+			"specIndex": 2,
+			"remark": null
+		}
+	],
+	"productSaleStocks": [
+		{
+			"specNo": "11:21:31",
+			"specName": "4G全网通:亮黑色:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:21:32",
+			"specName": "4G全网通:亮黑色:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:22:31",
+			"specName": "4G全网通:釉白色:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:22:32",
+			"specName": "4G全网通:釉白色:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:23:31",
+			"specName": "4G全网通:秘银色:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:23:32",
+			"specName": "4G全网通:秘银色:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:24:31",
+			"specName": "4G全网通:夏日胡杨:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:24:32",
+			"specName": "4G全网通:夏日胡杨:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:25:31",
+			"specName": "4G全网通:秋日胡杨:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "11:25:32",
+			"specName": "4G全网通:秋日胡杨:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:21:31",
+			"specName": "5G全网通:亮黑色:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:21:32",
+			"specName": "5G全网通:亮黑色:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:22:31",
+			"specName": "5G全网通:釉白色:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:22:32",
+			"specName": "5G全网通:釉白色:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:23:31",
+			"specName": "5G全网通:秘银色:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:23:32",
+			"specName": "5G全网通:秘银色:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:24:31",
+			"specName": "5G全网通:夏日胡杨:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:24:32",
+			"specName": "5G全网通:夏日胡杨:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:25:31",
+			"specName": "5G全网通:秋日胡杨:8+128GB",
+			"sellPrice": 619900,
+			"stock": 999
+		},
+		{
+			"specNo": "12:25:32",
+			"specName": "5G全网通:秋日胡杨:8+256GB",
+			"sellPrice": 619900,
+			"stock": 999
+		}
+	]
+}

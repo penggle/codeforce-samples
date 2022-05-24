@@ -6,13 +6,13 @@ import com.penglecode.codeforce.common.support.MapLambdaBuilder;
 import com.penglecode.codeforce.common.support.MessageSupplier;
 import com.penglecode.codeforce.common.support.ValidationAssert;
 import com.penglecode.codeforce.common.util.DateTimeUtils;
+import com.penglecode.codeforce.common.util.StringUtils;
 import com.penglecode.codeforce.mybatistiny.dsl.LambdaQueryCriteria;
 import com.penglecode.codeforce.mybatistiny.dsl.QueryCriteria;
 import com.penglecode.codeforce.mybatistiny.support.EntityMapperHelper;
 import com.penglecode.codeforce.samples.product.dal.mapper.ProductSaleSpecMapper;
 import com.penglecode.codeforce.samples.product.domain.model.ProductSaleSpec;
 import com.penglecode.codeforce.samples.product.domain.service.ProductSaleSpecService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +51,7 @@ public class ProductSaleSpecServiceImpl implements ProductSaleSpecService {
 
     @Override
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
-    public void batchCreateProductSaleSpec(List<ProductSaleSpec> productSaleSpecs) {
+    public void createProductSaleSpecs(List<ProductSaleSpec> productSaleSpecs) {
         ValidationAssert.notEmpty(productSaleSpecs, MessageSupplier.ofRequiredParameter("productSaleSpecs"));
         EntityMapperHelper.batchUpdateEntityObjects(productSaleSpecs, this::createProductSaleSpec, productSaleSpecMapper);
     }
@@ -73,7 +73,7 @@ public class ProductSaleSpecServiceImpl implements ProductSaleSpecService {
 
     @Override
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
-    public void batchModifyProductSaleSpecById(List<ProductSaleSpec> productSaleSpecs) {
+    public void modifyProductSaleSpecsById(List<ProductSaleSpec> productSaleSpecs) {
         ValidationAssert.notEmpty(productSaleSpecs, MessageSupplier.ofRequiredParameter("productSaleSpecs"));
         EntityMapperHelper.batchUpdateEntityObjects(productSaleSpecs, this::modifyProductSaleSpecById, productSaleSpecMapper);
     }

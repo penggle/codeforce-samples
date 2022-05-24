@@ -6,13 +6,13 @@ import com.penglecode.codeforce.common.support.MapLambdaBuilder;
 import com.penglecode.codeforce.common.support.MessageSupplier;
 import com.penglecode.codeforce.common.support.ValidationAssert;
 import com.penglecode.codeforce.common.util.DateTimeUtils;
+import com.penglecode.codeforce.common.util.StringUtils;
 import com.penglecode.codeforce.mybatistiny.dsl.LambdaQueryCriteria;
 import com.penglecode.codeforce.mybatistiny.dsl.QueryCriteria;
 import com.penglecode.codeforce.mybatistiny.support.EntityMapperHelper;
 import com.penglecode.codeforce.samples.product.dal.mapper.ProductSaleStockMapper;
 import com.penglecode.codeforce.samples.product.domain.model.ProductSaleStock;
 import com.penglecode.codeforce.samples.product.domain.service.ProductSaleStockService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +51,7 @@ public class ProductSaleStockServiceImpl implements ProductSaleStockService {
 
     @Override
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
-    public void batchCreateProductSaleStock(List<ProductSaleStock> productStocks) {
+    public void createProductSaleStocks(List<ProductSaleStock> productStocks) {
         ValidationAssert.notEmpty(productStocks, MessageSupplier.ofRequiredParameter("productStocks"));
         EntityMapperHelper.batchUpdateEntityObjects(productStocks, this::createProductSaleStock, productSaleStockMapper);
     }
@@ -73,7 +73,7 @@ public class ProductSaleStockServiceImpl implements ProductSaleStockService {
 
     @Override
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
-    public void batchModifyProductSaleStockById(List<ProductSaleStock> productStocks) {
+    public void modifyProductSaleStocksById(List<ProductSaleStock> productStocks) {
         ValidationAssert.notEmpty(productStocks, MessageSupplier.ofRequiredParameter("productStocks"));
         EntityMapperHelper.batchUpdateEntityObjects(productStocks, this::modifyProductSaleStockById, productSaleStockMapper);
     }

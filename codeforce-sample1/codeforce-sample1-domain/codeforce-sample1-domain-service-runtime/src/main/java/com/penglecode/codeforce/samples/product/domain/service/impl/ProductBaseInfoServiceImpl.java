@@ -6,13 +6,13 @@ import com.penglecode.codeforce.common.support.MapLambdaBuilder;
 import com.penglecode.codeforce.common.support.MessageSupplier;
 import com.penglecode.codeforce.common.support.ValidationAssert;
 import com.penglecode.codeforce.common.util.DateTimeUtils;
+import com.penglecode.codeforce.common.util.StringUtils;
 import com.penglecode.codeforce.mybatistiny.dsl.LambdaQueryCriteria;
 import com.penglecode.codeforce.mybatistiny.dsl.QueryCriteria;
 import com.penglecode.codeforce.mybatistiny.support.EntityMapperHelper;
 import com.penglecode.codeforce.samples.product.dal.mapper.ProductBaseInfoMapper;
 import com.penglecode.codeforce.samples.product.domain.model.ProductBaseInfo;
 import com.penglecode.codeforce.samples.product.domain.service.ProductBaseInfoService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +45,7 @@ public class ProductBaseInfoServiceImpl implements ProductBaseInfoService {
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
     public void createProductBase(ProductBaseInfo productBase) {
         ValidationAssert.notNull(productBase, MessageSupplier.ofRequiredParameter("productBase"));
-        productBase.setCreateTime(org.apache.commons.lang3.StringUtils.defaultIfBlank(productBase.getCreateTime(), DateTimeUtils.formatNow()));
+        productBase.setCreateTime(StringUtils.defaultIfBlank(productBase.getCreateTime(), DateTimeUtils.formatNow()));
         productBase.setUpdateTime(productBase.getCreateTime());
         BeanValidator.validateBean(productBase, ProductBaseInfo::getProductName, ProductBaseInfo::getProductUrl, ProductBaseInfo::getProductTags, ProductBaseInfo::getProductType, ProductBaseInfo::getAuditStatus, ProductBaseInfo::getOnlineStatus, ProductBaseInfo::getShopId, ProductBaseInfo::getCreateTime, ProductBaseInfo::getUpdateTime);
         productBaseInfoMapper.insert(productBase);

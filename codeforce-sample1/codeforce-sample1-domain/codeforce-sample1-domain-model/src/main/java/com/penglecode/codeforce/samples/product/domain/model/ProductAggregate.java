@@ -1,5 +1,7 @@
 package com.penglecode.codeforce.samples.product.domain.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -13,12 +15,15 @@ public class ProductAggregate extends ProductBaseInfo {
     private static final long serialVersionUID = 1L;
 
     /** 商品额外信息 */
+    @NotNull(message="商品额外信息不能为空!")
     private ProductExtraInfo productExtra;
 
     /** 商品销售规格信息列表 */
+    @NotEmpty(message="商品销售规格信息列表不能为空!")
     private List<ProductSaleSpec> productSaleSpecs;
 
     /** 商品销售库存信息列表 */
+    @NotEmpty(message="商品销售库存信息列表不能为空!")
     private List<ProductSaleStock> productSaleStocks;
 
     public ProductExtraInfo getProductExtra() {
