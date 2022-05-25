@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.penglecode</groupId>
+        <artifactId>codeforce-sample2</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>codeforce-sample2-domain</artifactId>
+    <packaging>pom</packaging>
+    <name>codeforce-sample2-domain</name>
+    <description>领域层</description>
+
+    <!--
+        应用服务层只能通过领域服务接口层(codeforce-sample2-domain-service-sdk)来访问数据，
+        把领域服务拆分为sdk和runtime两个部分是为了防止在在应用服务层直接通过codeforce-sample2-infras-dal来访问数据的问题
+     -->
+    <modules>
+        <module>codeforce-sample2-domain-model</module>
+        <module>codeforce-sample2-domain-service-sdk</module>
+		<module>codeforce-sample2-domain-service-runtime</module>
+    </modules>
+</project>

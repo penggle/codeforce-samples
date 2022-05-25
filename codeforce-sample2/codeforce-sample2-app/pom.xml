@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.penglecode</groupId>
+        <artifactId>codeforce-sample2</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>codeforce-sample2-app</artifactId>
+    <packaging>pom</packaging>
+    <name>codeforce-sample2-app</name>
+    <description>应用层，主要包括：应用服务(一个应用服务对应着一个聚合根)、MQ消息收发、Job定时任务</description>
+
+    <dependencies>
+        <!-- codeforce-sample2-api-consumer -->
+        <dependency>
+            <groupId>com.penglecode</groupId>
+            <artifactId>codeforce-sample2-api-consumer</artifactId>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>codeforce-sample2-app-service</module>
+        <module>codeforce-sample2-app-amq</module>
+		<module>codeforce-sample2-app-job</module>
+    </modules>
+</project>

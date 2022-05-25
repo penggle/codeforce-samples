@@ -73,6 +73,13 @@
                 <version>${codeforce.version}</version>
             </dependency>
 
+            <!-- codeforce-common-codegen -->
+            <dependency>
+                <groupId>io.github.penggle</groupId>
+                <artifactId>codeforce-common-codegen</artifactId>
+                <version>${codeforce.version}</version>
+            </dependency>
+
             <!-- mybatis-tiny -->
             <dependency>
                 <groupId>io.github.penggle</groupId>
@@ -161,6 +168,11 @@
                         <generateBackupPoms>false</generateBackupPoms>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${springboot.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -197,5 +209,6 @@
 
     <modules>
         <module>codeforce-sample1</module>
+		<module>codeforce-sample2</module>
     </modules>
 </project>

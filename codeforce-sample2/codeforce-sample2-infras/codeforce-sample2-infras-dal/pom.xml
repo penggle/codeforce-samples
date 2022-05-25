@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.penglecode</groupId>
+        <artifactId>codeforce-sample2-infras</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>codeforce-sample2-infras-dal</artifactId>
+    <name>codeforce-sample2-infras-dal</name>
+    <description>基础设施层之数据访问层(DAL)</description>
+
+    <dependencies>
+        <!-- codeforce-sample2-domain-model -->
+        <dependency>
+            <groupId>com.penglecode</groupId>
+            <artifactId>codeforce-sample2-domain-model</artifactId>
+        </dependency>
+
+        <!-- mybatis-spring-boot-starter -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- mybatis-tiny-core -->
+        <dependency>
+            <groupId>io.github.penggle</groupId>
+            <artifactId>mybatis-tiny-core</artifactId>
+        </dependency>
+
+        <!-- mybatis-springboot-mds-starter -->
+        <dependency>
+            <groupId>io.github.penggle</groupId>
+            <artifactId>mybatis-springboot-mds-starter</artifactId>
+        </dependency>
+    </dependencies>
+</project>
