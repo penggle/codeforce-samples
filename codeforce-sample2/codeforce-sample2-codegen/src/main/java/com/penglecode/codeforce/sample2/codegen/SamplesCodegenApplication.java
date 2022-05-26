@@ -4,8 +4,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.mybatis.EnableMultiDataSource;
-import org.springframework.boot.autoconfigure.mybatis.NamedDatabase;
+import org.springframework.boot.autoconfigure.mds.EnableMultiDataSource;
+import org.springframework.boot.autoconfigure.mds.NamedDatabase;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**

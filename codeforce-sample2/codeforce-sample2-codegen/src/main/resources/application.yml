@@ -46,6 +46,3 @@ spring:
             connection-timeout: 30000
             #连接测试语句
             connection-test-query: SELECT 1
-#关闭Mybatis多数据源
-mybatis:
-    mds-enabled: false

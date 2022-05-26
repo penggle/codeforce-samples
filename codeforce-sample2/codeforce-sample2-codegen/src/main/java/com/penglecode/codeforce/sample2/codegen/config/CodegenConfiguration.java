@@ -1,5 +1,6 @@
 package com.penglecode.codeforce.sample2.codegen.config;
 
+import com.penglecode.codeforce.common.config.defaults.CommonDefaultConfigBasePackage;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0
  */
 @Configuration
-@ComponentScan(basePackages="com.penglecode.codeforce.common.config.defaults")
+@ComponentScan(basePackageClasses=CommonDefaultConfigBasePackage.class)
 public class CodegenConfiguration {
 }

@@ -3,8 +3,8 @@ package com.penglecode.codeforce.samples;
 import com.penglecode.codeforce.mybatistiny.EnableMybatisTiny;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.mybatis.EnableMultiDataSource;
-import org.springframework.boot.autoconfigure.mybatis.NamedDatabase;
+import org.springframework.boot.autoconfigure.mds.EnableMultiDataSource;
+import org.springframework.boot.autoconfigure.mds.NamedDatabase;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
