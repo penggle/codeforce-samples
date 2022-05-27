@@ -8,8 +8,10 @@ spring:
                 domain:
                     #领域对象公共配置
                     domainCommons:
-                        #注释作者
-                        commentAuthor: AutoCodeGenerator
+                        #输出目标源码上的注释作者
+                        targetAuthor: AutoCodeGenerator
+                        #输出目标源码上的注释版本
+                        targetVersion: 1.0.0
                         #领域对象源码输出项目目录
                         targetProject: src/main/java
                         #领域对象源码输出公共父包,其下约定有子包：model、enums
@@ -26,6 +28,10 @@ spring:
                             forceNumber1AsBoolean: true
                             #强制将数据库中的浮点型字段映射为Double类型? 默认为BigDecimal
                             forceDecimalNumericAsDouble: true
+                        #默认的创建时间列名
+                        defaultCreateTimeColumn: create_time
+                        #默认的修改时间列名
+                        defaultUpdateTimeColumn: update_time
                         #领域枚举定义
                         domainEnums:
                             #使用已存在的枚举
@@ -47,6 +53,9 @@ spring:
                             domainEnumCodeField: {fieldType: java.lang.Integer, fieldName: statusCode}
                             domainEnumNameField: {fieldType: java.lang.String, fieldName: statusName}
                             domainEnumValues: {OFFLINE: [0, '已下架'], ONLINE: [1, '已上架']}
+                        #全局性的类型映射集合,以便后续省去使用带包名的全名称配置引用
+                        globalTypes:
+                            NamedDatabase: org.springframework.boot.autoconfigure.mds.NamedDatabase
                     #领域实体对象列表
                     domainEntities:
                         #领域实体对象类名
@@ -61,11 +70,13 @@ spring:
                         runtimeDataSource: product
                         #领域实体对象内省数据库配置
                         introspectConfig:
-                            #强制将数据库中的日期时间字段映射为String类型? 默认为Java8日期/时间对象
+                            #考虑到分库分表需要在此增设实际自省表表名(如果为空则取domainEntityTable)
+                            #introspectTableName: t_product_base_info
+                            #强制将数据库中的日期时间字段映射为String类型? 否则为Java8日期/时间对象
                             forceDateTimeAsString: true
                             #强制将数据库中的INT(1)/TINYINT(1)/NUMBER(1)等字段映射为Boolean类型?
                             forceNumber1AsBoolean: true
-                            #强制将数据库中的浮点型字段映射为Double类型? 默认为BigDecimal
+                            #强制将数据库中的浮点型字段映射为Double类型? 否则为BigDecimal
                             forceDecimalNumericAsDouble: true
                         #领域对象的所有列,其中operatorOnQuery支持eq,like|likeLeft|likeRight,gt|lt|gte|lte,in等
                         domainEntityColumns:
