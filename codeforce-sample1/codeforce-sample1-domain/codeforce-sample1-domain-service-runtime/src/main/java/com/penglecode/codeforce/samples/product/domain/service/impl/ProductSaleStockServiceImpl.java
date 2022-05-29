@@ -5,7 +5,9 @@ import com.penglecode.codeforce.common.support.BeanValidator;
 import com.penglecode.codeforce.common.support.MapLambdaBuilder;
 import com.penglecode.codeforce.common.support.MessageSupplier;
 import com.penglecode.codeforce.common.support.ValidationAssert;
+import com.penglecode.codeforce.common.util.CollectionUtils;
 import com.penglecode.codeforce.common.util.DateTimeUtils;
+import com.penglecode.codeforce.common.util.ObjectUtils;
 import com.penglecode.codeforce.common.util.StringUtils;
 import com.penglecode.codeforce.mybatistiny.dsl.LambdaQueryCriteria;
 import com.penglecode.codeforce.mybatistiny.dsl.QueryCriteria;
@@ -16,8 +18,6 @@ import com.penglecode.codeforce.samples.product.domain.service.ProductSaleStockS
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import java.util.Collections;
@@ -89,7 +89,7 @@ public class ProductSaleStockServiceImpl implements ProductSaleStockService {
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
     public void removeProductSaleStockByIds(List<ID> ids) {
         ValidationAssert.notEmpty(ids, MessageSupplier.ofRequiredParameter("ids"));
-        productSaleStockMapper.deleteByIds(ids);
+        EntityMapperHelper.batchDeleteEntityObjects(ids, productSaleStockMapper);
     }
 
     @Override

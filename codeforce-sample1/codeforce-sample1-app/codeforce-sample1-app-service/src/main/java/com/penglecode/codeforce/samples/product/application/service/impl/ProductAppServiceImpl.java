@@ -2,6 +2,7 @@ package com.penglecode.codeforce.samples.product.application.service.impl;
 
 import com.penglecode.codeforce.common.model.Page;
 import com.penglecode.codeforce.common.support.*;
+import com.penglecode.codeforce.common.util.CollectionUtils;
 import com.penglecode.codeforce.samples.product.application.service.ProductAppService;
 import com.penglecode.codeforce.samples.product.domain.model.*;
 import com.penglecode.codeforce.samples.product.domain.service.ProductBaseInfoService;
@@ -10,7 +11,6 @@ import com.penglecode.codeforce.samples.product.domain.service.ProductSaleSpecSe
 import com.penglecode.codeforce.samples.product.domain.service.ProductSaleStockService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.Collections;
@@ -67,21 +67,18 @@ public class ProductAppServiceImpl implements ProductAppService {
         ValidationAssert.notNull(product, MessageSupplier.ofRequiredParameter("product"));
         BeanValidator.validateBean(product, ProductAggregate::getProductExtra, ProductAggregate::getProductSaleSpecs, ProductAggregate::getProductSaleStocks);
         productBaseInfoService.modifyProductBaseById(product);
+
         ProductExtraInfo productExtra = product.getProductExtra();
-        if(productExtra != null) {
-            productExtra.setProductId(product.getProductId());
-            productExtraInfoService.modifyProductExtraById(product.getProductExtra());
-        }
+        productExtra.setProductId(product.getProductId());
+        productExtraInfoService.modifyProductExtraById(product.getProductExtra());
+
         List<ProductSaleSpec> transientProductSaleSpecs = product.getProductSaleSpecs();
-        if(!CollectionUtils.isEmpty(transientProductSaleSpecs)) {
-            List<ProductSaleSpec> persistedProductSaleSpecs = productSaleSpecService.getProductSaleSpecsByProductId(product.getProductId());
-            DomainServiceHelper.batchMergeEntityObjects(transientProductSaleSpecs, persistedProductSaleSpecs, ProductSaleSpec::identity, productSaleSpecService::createProductSaleSpecs, productSaleSpecService::modifyProductSaleSpecsById, productSaleSpecService::removeProductSaleSpecByIds);
-        }
+        List<ProductSaleSpec> persistedProductSaleSpecs = productSaleSpecService.getProductSaleSpecsByProductId(product.getProductId());
+        DomainServiceHelper.batchMergeEntityObjects(transientProductSaleSpecs, persistedProductSaleSpecs, ProductSaleSpec::identity, productSaleSpecService::createProductSaleSpecs, productSaleSpecService::modifyProductSaleSpecsById, productSaleSpecService::removeProductSaleSpecByIds);
+
         List<ProductSaleStock> transientProductSaleStocks = product.getProductSaleStocks();
-        if(!CollectionUtils.isEmpty(transientProductSaleStocks)) {
-            List<ProductSaleStock> persistedProductSaleStocks = productSaleStockService.getProductSaleStocksByProductId(product.getProductId());
-            DomainServiceHelper.batchMergeEntityObjects(transientProductSaleStocks, persistedProductSaleStocks, ProductSaleStock::identity, productSaleStockService::createProductSaleStocks, productSaleStockService::modifyProductSaleStocksById, productSaleStockService::removeProductSaleStockByIds);
-        }
+        List<ProductSaleStock> persistedProductSaleStocks = productSaleStockService.getProductSaleStocksByProductId(product.getProductId());
+        DomainServiceHelper.batchMergeEntityObjects(transientProductSaleStocks, persistedProductSaleStocks, ProductSaleStock::identity, productSaleStockService::createProductSaleStocks, productSaleStockService::modifyProductSaleStocksById, productSaleStockService::removeProductSaleStockByIds);
     }
 
     @Override

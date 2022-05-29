@@ -5,15 +5,16 @@ import com.penglecode.codeforce.common.support.MapLambdaBuilder;
 import com.penglecode.codeforce.common.support.MessageSupplier;
 import com.penglecode.codeforce.common.support.ValidationAssert;
 import com.penglecode.codeforce.common.util.DateTimeUtils;
+import com.penglecode.codeforce.common.util.ObjectUtils;
 import com.penglecode.codeforce.common.util.StreamUtils;
 import com.penglecode.codeforce.common.util.StringUtils;
+import com.penglecode.codeforce.mybatistiny.support.EntityMapperHelper;
 import com.penglecode.codeforce.samples.product.dal.mapper.ProductExtraInfoMapper;
 import com.penglecode.codeforce.samples.product.domain.model.ProductExtraInfo;
 import com.penglecode.codeforce.samples.product.domain.service.ProductExtraInfoService;
 import org.apache.ibatis.cursor.Cursor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import java.util.LinkedHashMap;
@@ -72,7 +73,7 @@ public class ProductExtraInfoServiceImpl implements ProductExtraInfoService {
     @Transactional(transactionManager="productTransactionManager", rollbackFor=Exception.class)
     public void removeProductExtraByIds(List<Long> ids) {
         ValidationAssert.notEmpty(ids, MessageSupplier.ofRequiredParameter( "ids"));
-        productExtraInfoMapper.deleteByIds(ids);
+        EntityMapperHelper.batchDeleteEntityObjects(ids, productExtraInfoMapper);
     }
 
     @Override
