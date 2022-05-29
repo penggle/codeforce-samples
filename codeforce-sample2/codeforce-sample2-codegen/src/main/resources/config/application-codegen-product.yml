@@ -201,23 +201,18 @@ spring:
                             targetPackage: com.penglecode.codeforce.samples.product.application.service.impl
                 #API代码部分
                 api:
-                    #API接口源码输出项目目录
-                    targetProject: src/main/java
-                    #API接口所在公共父包,其下约定有子包：service、controller、dto、request、response五个子包
+                    #API接口的URL前缀(默认：/api)
+                    apiUrlPrefix: /api
+                    #API层的公共基础包,其下约定有子包：dto、request、response、service、controller五个子包
                     targetPackage: com.penglecode.codeforce.samples.product.api
-                    #API接口DTO配置
-                    modelConfig:
-                        #API接口源码输出项目目录
-                        targetProject: src/main/java
-                        #API接口DTO所在公共父包,其下约定有子包：dto、request、response三个子包
-                        targetPackage: com.penglecode.codeforce.samples.product.api
                     #API接口客户端配置
                     clientConfig:
                         #API接口协议,FEIGN是必须的,DUBBO是可选的
                         apiProtocols: FEIGN,DUBBO
                         #API接口声明Map类型,[key=领域对象名称,value=接口方法名枚举]
                         apiProviders:
-                            ProductAggregate: CREATE,MODIFY_BY_ID,REMOVE_BY_ID,REMOVE_BY_IDS,GET_BY_ID,GET_BY_IDS,GET_BY_PAGE
+                            #ProductAggregate: CREATE,MODIFY_BY_ID,REMOVE_BY_ID,REMOVE_BY_IDS,GET_BY_ID,GET_BY_IDS,GET_BY_PAGE
+                            ProductAggregate: ALL
                     #API接口实现配置
                     runtimeConfig:
                         #API接口声明Map类型,[key=领域对象名称,value=接口方法名枚举]
