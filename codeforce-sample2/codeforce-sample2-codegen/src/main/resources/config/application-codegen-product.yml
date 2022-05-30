@@ -89,8 +89,8 @@ spring:
                           - {columnName: 'online_status', columnTitle: '上下架状态', columnOnUpsert: true, validateOnUpsert: true, javaType: 'java.lang.Integer', queryOperator: 'eq', decodeEnumType: 'ProductOnlineStatusEnum'}
                           - {columnName: 'shop_id', columnTitle: '所属店铺ID', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq'}
                           - {columnName: 'remark', columnTitle: '商品备注', columnOnUpsert: true}
-                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, queryOperator: 'gte,lte', selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
-                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
+                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, queryOperator: 'gte,lte', selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
+                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
                       - domainEntityName: ProductExtraInfo
                         domainEntityTable: t_product_extra_info
                         domainEntityTitle: 商品额外信息
@@ -100,8 +100,8 @@ spring:
                           - {columnName: 'product_details', columnTitle: '商品详情', columnOnUpsert: true, validateOnUpsert: true}
                           - {columnName: 'product_specifications', columnTitle: '商品规则参数', columnOnUpsert: true}
                           - {columnName: 'product_services', columnTitle: '商品服务', columnOnUpsert: true}
-                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
-                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
+                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
+                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
                       - domainEntityName: ProductSaleSpec
                         domainEntityTable: t_product_sale_spec
                         domainEntityTitle: 商品销售规格信息
@@ -112,8 +112,8 @@ spring:
                           - {columnName: 'spec_name', columnTitle: '规格名称', columnOnUpsert: true, validateOnUpsert: true}
                           - {columnName: 'spec_index', columnTitle: '规格顺序', columnOnUpsert: true, validateOnUpsert: true}
                           - {columnName: 'remark', columnTitle: '备注', columnOnUpsert: true}
-                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
-                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
+                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
+                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
                       - domainEntityName: ProductSaleStock
                         domainEntityTable: t_product_sale_stock
                         domainEntityTitle: 商品销售库存信息
@@ -124,8 +124,8 @@ spring:
                           - {columnName: 'spec_name', columnTitle: '规格名称', columnOnUpsert: true, validateOnUpsert: true}
                           - {columnName: 'sell_price', columnTitle: '售价', columnOnUpsert: true, validateOnUpsert: true}
                           - {columnName: 'stock', columnTitle: '库存', columnOnUpsert: true, validateOnUpsert: true}
-                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
-                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')'}
+                          - {columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
+                          - {columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')"}
 
                     #领域聚合根(如果定义了聚合根，则后端会生成对应的{domainAggregateName}AppService)
                     domainAggregates:
