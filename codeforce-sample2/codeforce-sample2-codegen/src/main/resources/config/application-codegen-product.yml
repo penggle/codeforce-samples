@@ -55,7 +55,7 @@ spring:
                             domainEnumValues: {OFFLINE: [0, '已下架'], ONLINE: [1, '已上架']}
                         #全局性的类型映射集合,以便后续省去使用带包名的全名称配置引用
                         globalTypes:
-                            NamedDatabase: org.springframework.boot.autoconfigure.mds.NamedDatabase
+                          - NamedDatabase: org.springframework.boot.autoconfigure.mds.NamedDatabase
                     #领域实体对象列表
                     domainEntities:
                         #领域实体对象类名
