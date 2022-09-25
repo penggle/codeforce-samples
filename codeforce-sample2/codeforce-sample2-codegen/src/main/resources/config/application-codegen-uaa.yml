@@ -3,7 +3,7 @@ spring:
     codegen:
         config:
             #业务/功能模块名称
-            product:
+            uaa:
                 #领域对象配置
                 domain:
                     #领域对象公共配置
@@ -34,7 +34,7 @@ spring:
                         defaultUpdateTimeColumn: update_time
                         #领域枚举定义
                         domainEnums:
-                            #定义新的枚举类型
+                            #使用已存在的枚举
                           - domainEnumName: UaaUserTypeEnum
                             domainEnumTitle: 用户类型枚举
                             domainEnumCodeField: {fieldType: java.lang.Integer, fieldName: typeCode}
@@ -72,7 +72,7 @@ spring:
                             domainEnumValues: {ACTION_MENU: [0, '菜单'], ACTION_BUTTON: [1, '按钮']}
                         #全局性的类型映射集合,以便后续省去使用带包名的全名称配置引用
                         globalTypes:
-                          - NamedDatabase: org.springframework.boot.autoconfigure.mds.NamedDatabase
+                            NamedDatabase: org.springframework.boot.autoconfigure.mds.NamedDatabase
                     #领域实体对象列表
                     domainEntities:
                         #领域实体对象类名
@@ -80,22 +80,9 @@ spring:
                         #领域实体对应的数据库表名
                         domainEntityTable: uaa_user
                         #领域实体对象中文名称
-                        domainEntityTitle: UAA用户模型
+                        domainEntityTitle: UAA用户信息
                         #领域实体对象别名(在方法命名、参数/变量命名、URL命名时使用)
                         domainEntityAlias: User
-                        #领域实体对象运行时数据源
-                        runtimeDataSource: uaa
-                        #领域实体对象内省数据库配置
-                        introspectConfig:
-                            #考虑到分库分表需要在此增设实际自省表表名(如果为空则取domainEntityTable)
-                            #introspectTableName: t_product_base_info
-                            #强制将数据库中的日期时间字段映射为String类型? 否则为Java8日期/时间对象
-                            forceDateTimeAsString: true
-                            #强制将数据库中的INT(1)/TINYINT(1)/NUMBER(1)等字段映射为Boolean类型?
-                            forceNumber1AsBoolean: true
-                            #强制将数据库中的浮点型字段映射为Double类型? 否则为BigDecimal
-                            forceDecimalNumericAsDouble: true
-                        #领域对象的所有列,其中queryOperator支持eq,like|likeLeft|likeRight,gt|lt|gte|lte,in等
                         domainEntityColumns:
                           - { columnName: 'user_id', columnTitle: '用户ID', idColumn: true }
                           - { columnName: 'user_name', columnTitle: '用户名', columnOnInsert: true, validateOnInsert: true, queryOperator: 'likeRight' }
@@ -107,41 +94,27 @@ spring:
                           - { columnName: 'source_type', columnTitle: '用户来源', columnOnInsert: true, validateOnInsert: true, javaType: 'java.lang.Integer', queryOperator: 'eq', decodeEnumType: 'UaaUserSourceTypeEnum' }
                           - { columnName: 'remark', columnTitle: '用户备注', columnOnUpsert: true }
                           - { columnName: 'tenant_id', columnTitle: '所属租户ID', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
-                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, queryOperator: 'gte,lte', selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-
+                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, queryOperator: 'gte,lte', selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
+                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
                       - domainEntityName: UaaRole
                         domainEntityTable: uaa_role
-                        domainEntityTitle: UAA角色模型
+                        domainEntityTitle: UAA角色信息
                         domainEntityAlias: Role
                         domainEntityColumns:
-                          - { columnName: 'role_id', columnTitle: '角色ID', idColumn: true }
+                          - { columnName: 'role_id', columnTitle: '角色ID', idColumn: true, queryOperator: 'eq' }
                           - { columnName: 'role_name', columnTitle: '角色名称', columnOnUpsert: true, validateOnUpsert: true, queryOperator: 'likeRight' }
                           - { columnName: 'role_code', columnTitle: '角色代码', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
                           - { columnName: 'role_type', columnTitle: '角色类型', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq', decodeEnumType: 'UaaRoleTypeEnum' }
                           - { columnName: 'role_desc', columnTitle: '角色描述', columnOnUpsert: true }
                           - { columnName: 'tenant_id', columnTitle: '所属租户ID', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
-                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-
-                      - domainEntityName: UaaUserRole
-                        domainEntityTable: uaa_user_role
-                        domainEntityTitle: UAA用户角色关系
-                        domainEntityAlias: UserRole
-                        #是否是单纯的关联实体(对应着数据库中的单纯的关联关系表)
-                        simpleAssociativeEntity: true
-                        domainEntityColumns:
-                          - { columnName: 'user_id', columnTitle: '用户ID', idColumn: true, associatedEntityName: 'UaaUser', associatedEntityRole: 'master' }
-                          - { columnName: 'role_id', columnTitle: '角色ID', idColumn: true, associatedEntityName: 'UaaRole', associatedEntityRole: 'slave' }
-                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-
+                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
+                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
                       - domainEntityName: UaaResource
                         domainEntityTable: uaa_resource
-                        domainEntityTitle: UAA资源模型
+                        domainEntityTitle: UAA资源信息
                         domainEntityAlias: Resource
                         domainEntityColumns:
-                          - { columnName: 'resource_id', columnTitle: '资源ID', idColumn: true }
+                          - { columnName: 'resource_id', columnTitle: '资源ID', idColumn: true, queryOperator: 'eq' }
                           - { columnName: 'resource_name', columnTitle: '资源名称', columnOnUpsert: true, validateOnUpsert: true, queryOperator: 'eq' }
                           - { columnName: 'resource_code', columnTitle: '资源代码', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
                           - { columnName: 'parent_resource_id', columnTitle: '父资源ID', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
@@ -153,37 +126,44 @@ spring:
                           - { columnName: 'resource_icon_class', columnTitle: '资源ICON样式class', columnOnUpsert: true, validateOnUpsert: true }
                           - { columnName: 'resource_icon_style', columnTitle: '资源ICON样式css', columnOnUpsert: true, validateOnUpsert: true }
                           - { columnName: 'remark', columnTitle: '资源备注', columnOnUpsert: true }
-                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-
-                      - domainEntityName: UaaRoleResource
-                        domainEntityTable: uaa_role_resource
-                        domainEntityTitle: UAA角色资源关系
-                        domainEntityAlias: RoleResource
-                        #是否是单纯的关联实体(对应着数据库中的单纯的关联关系表)
-                        simpleAssociativeEntity: true
-                        domainEntityColumns:
-                          - { columnName: 'role_id', columnTitle: '角色ID', idColumn: true, associatedEntityName: 'UaaRole', associatedEntityRole: 'master' }
-                          - { columnName: 'resource_id', columnTitle: '资源ID', idColumn: true, associatedEntityName: 'UaaUser', associatedEntityRole: 'slave' }
-                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
-                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: 'DATE_FORMAT({name}, '%Y-%m-%d %T')' }
+                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
+                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
 
                     #领域聚合根(如果定义了聚合根，则后端会生成对应的{domainAggregateName}AppService)
                     domainAggregates:
                         #领域聚合根类名(为避免与实体对象命名冲突,聚合根统一以Aggregate结尾)
-                      - domainAggregateName: UaaUserAggregate
+                      - domainAggregateName: ProductAggregate
                         #领域聚合根中文名称
-                        domainAggregateTitle: UAA用户
+                        domainAggregateTitle: 商品
                         #领域聚合根别名(在方法命名、参数/变量命名、URL命名时使用)
-                        domainAggregateAlias: User
+                        domainAggregateAlias: Product
                         #领域聚合根的主要实体对象名称(指向domainEntities列表中的某一个)
-                        aggregateMasterEntity: UaaUser
+                        aggregateMasterEntity: ProductBaseInfo
                         #领域聚合根的从属实体对象列表
                         aggregateSlaveEntities:
                             #领域聚合根的从属实体对象(指向domainEntities列表中的某一个)
-                          - aggregateSlaveEntity: UaaUserRole
+                          - aggregateSlaveEntity: ProductExtraInfo
                             #主要领域对象与从属领域对象的映射关系(支持1:1/1:N)
-                            masterSlaveMapping: 'user_id:user_id=1:N'
+                            masterSlaveMapping: 'product_id:product_id=1:1'
+                            #保存主要实体对象时是否也级联保存从属实体对象
+                            cascadingOnUpsert: true
+                            #新建主要实体对象时是否也级联新建从属实体对象
+                            #cascadingOnInsert: true
+                            #新建主要实体对象时是否校验从属实体对象不为空(仅在cascadingOnInsert=true时有效)
+                            #validateOnInsert: true
+                            #更新主要实体对象时是否也级联更新从属实体对象
+                            #cascadingOnUpdate: true
+                            #更新主要实体对象时是否校验从属实体对象不为空(仅在cascadingOnUpdate=true时有效)
+                            #validateOnUpdate: true
+                            #聚合根的从属实体对象(指向domainEntities列表中的某一个)
+                          - aggregateSlaveEntity: ProductSaleSpec
+                            #主要领域对象与从属领域对象的映射关系(支持1:1/1:N)
+                            masterSlaveMapping: 'product_id:product_id=1:N'
+                            #保存主要实体对象时是否也级联保存从属实体对象
+                            cascadingOnUpsert: true
+                          - aggregateSlaveEntity: ProductSaleStock
+                            #主要领域对象与从属领域对象的映射关系(支持1:1/1:N)
+                            masterSlaveMapping: 'product_id:product_id=1:N'
                             #保存主要实体对象时是否也级联保存从属实体对象
                             cascadingOnUpsert: true
                 #Mybatis(DAL层)代码部分
@@ -192,7 +172,7 @@ spring:
                         #XxxMapper.java源码输出项目目录
                         targetProject: src/main/java
                         #XxxMapper.java所在包名
-                        targetPackage: com.penglecode.codeforce.samples.product.dal.mapper
+                        targetPackage: com.penglecode.codeforce.samples.uaa.dal.mapper
                         #当前领域对象的Mapper接口上的数据库名称,默认:'@NamedDatabase("${runtimeDataSource}")'
                         mapperAnnotations: '@NamedDatabase("${runtimeDataSource}")'
                 #Service代码部分
@@ -203,30 +183,30 @@ spring:
                             #服务接口源码输出项目目录
                             targetProject: src/main/java
                             #服务接口所在包名
-                            targetPackage: com.penglecode.codeforce.samples.product.domain.service
+                            targetPackage: com.penglecode.codeforce.samples.uaa.domain.service
                         implementConfig:
                             #服务实现源码输出项目目录
                             targetProject: src/main/java
                             #服务实现所在包名
-                            targetPackage: com.penglecode.codeforce.samples.product.domain.service.impl
+                            targetPackage: com.penglecode.codeforce.samples.uaa.domain.service.impl
                     #应用服务代码生成配置
                     application:
                         interfaceConfig:
                             #服务接口源码输出项目目录
                             targetProject: src/main/java
                             #服务接口所在包名
-                            targetPackage: com.penglecode.codeforce.samples.product.application.service
+                            targetPackage: com.penglecode.codeforce.samples.uaa.application.service
                         implementConfig:
                             #服务实现源码输出项目目录
                             targetProject: src/main/java
                             #服务实现所在包名
-                            targetPackage: com.penglecode.codeforce.samples.product.application.service.impl
+                            targetPackage: com.penglecode.codeforce.samples.uaa.application.service.impl
                 #API代码部分
                 api:
                     #API接口的URL前缀(默认：/api)
                     apiUrlPrefix: /api
                     #API层的公共基础包,其下约定有子包：dto、request、response、service、controller五个子包
-                    targetPackage: com.penglecode.codeforce.samples.product.api
+                    targetPackage: com.penglecode.codeforce.samples.uaa.api
                     #API接口客户端配置
                     clientConfig:
                         #API接口协议,FEIGN是必须的,DUBBO是可选的
