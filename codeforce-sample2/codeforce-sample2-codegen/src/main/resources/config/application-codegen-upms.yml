@@ -35,37 +35,37 @@ spring:
                         #领域枚举定义
                         domainEnums:
                             #使用已存在的枚举
-                          - domainEnumName: UaaUserTypeEnum
+                          - domainEnumName: UpmsUserTypeEnum
                             domainEnumTitle: 用户类型枚举
                             domainEnumCodeField: {fieldType: java.lang.Integer, fieldName: typeCode}
                             domainEnumNameField: {fieldType: java.lang.String, fieldName: typeName}
                             domainEnumValues: {SYSTEM_USER: [0, '系统用户'], TENANT_USER: [1, '租户用户']}
                             #定义新的枚举类型
-                          - domainEnumName: UaaUserStatusEnum
+                          - domainEnumName: UpmsUserStatusEnum
                             domainEnumTitle: 用户状态枚举
                             domainEnumCodeField: {fieldType: java.lang.Integer, fieldName: statusCode}
                             domainEnumNameField: {fieldType: java.lang.String, fieldName: statusName}
                             domainEnumValues: {DISABLED: [0, '禁用状态'], ENABLED: [1, '启用状态']}
                             #定义新的枚举类型
-                          - domainEnumName: UaaUserSourceTypeEnum
+                          - domainEnumName: UpmsUserSourceTypeEnum
                             domainEnumTitle: 用户来源枚举
                             domainEnumCodeField: { fieldType: java.lang.Integer, fieldName: typeCode }
                             domainEnumNameField: { fieldType: java.lang.String, fieldName: typeName }
-                            domainEnumValues: {UAA_ADMIN: [0, 'UAA用户管理'], UAA_REGISTER: [1, 'UAA用户注册'], UAA_OPENAPI: [2, 'UAA对外接口']}
+                            domainEnumValues: {UPMS_ADMIN: [0, 'UPMS用户管理'], UPMS_REGISTER: [1, 'UPMS用户注册'], UPMS_OPENAPI: [2, 'UPMS对外接口']}
                             #定义新的枚举类型
-                          - domainEnumName: UaaRoleTypeEnum
+                          - domainEnumName: UpmsRoleTypeEnum
                             domainEnumTitle: 角色类型枚举
                             domainEnumCodeField: {fieldType: java.lang.Integer, fieldName: typeCode}
                             domainEnumNameField: {fieldType: java.lang.String, fieldName: typeName}
                             domainEnumValues: {SYSTEM_ROLE: [0, '系统角色'], TENANT_ROLE: [1, '租户角色']}
                             #定义新的枚举类型
-                          - domainEnumName: UaaResourceTypeEnum
+                          - domainEnumName: UpmsResourceTypeEnum
                             domainEnumTitle: 资源类型枚举
                             domainEnumCodeField: {fieldType: java.lang.Integer, fieldName: typeCode}
                             domainEnumNameField: {fieldType: java.lang.String, fieldName: typeName}
                             domainEnumValues: {SYSTEM_RESOURCE: [0, '系统资源'], TENANT_RESOURCE: [1, '租户资源']}
                             #定义新的枚举类型
-                          - domainEnumName: UaaResourceActionTypeEnum
+                          - domainEnumName: UpmsResourceActionTypeEnum
                             domainEnumTitle: 资源功能类型枚举
                             domainEnumCodeField: {fieldType: java.lang.Integer, fieldName: typeCode}
                             domainEnumNameField: {fieldType: java.lang.String, fieldName: typeName}
@@ -76,11 +76,11 @@ spring:
                     #领域实体对象列表
                     domainEntities:
                         #领域实体对象类名
-                      - domainEntityName: UaaUser
+                      - domainEntityName: UpmsUser
                         #领域实体对应的数据库表名
-                        domainEntityTable: uaa_user
+                        domainEntityTable: upms_user
                         #领域实体对象中文名称
-                        domainEntityTitle: UAA用户信息
+                        domainEntityTitle: UPMS用户信息
                         #领域实体对象别名(在方法命名、参数/变量命名、URL命名时使用)
                         domainEntityAlias: User
                         domainEntityColumns:
@@ -89,29 +89,55 @@ spring:
                           - { columnName: 'password', columnTitle: '用户密码', columnOnUpsert: true, validateOnUpsert: true }
                           - { columnName: 'mobile', columnTitle: '手机号码', columnOnUpsert: true, validateOnUpsert: true, queryOperator: 'like' }
                           - { columnName: 'email', columnTitle: '电子邮箱', columnOnUpsert: true, validateOnUpsert: true, queryOperator: 'like' }
-                          - { columnName: 'user_type', columnTitle: '用户类型', columnOnInsert: true, validateOnInsert: true, javaType: 'java.lang.Integer', queryOperator: 'eq', decodeEnumType: 'UaaUserTypeEnum' }
-                          - { columnName: 'user_status', columnTitle: '用户状态', columnOnUpsert: true, validateOnUpsert: true, javaType: 'java.lang.Integer', queryOperator: 'in', decodeEnumType: 'UaaUserStatusEnum' }
-                          - { columnName: 'source_type', columnTitle: '用户来源', columnOnInsert: true, validateOnInsert: true, javaType: 'java.lang.Integer', queryOperator: 'eq', decodeEnumType: 'UaaUserSourceTypeEnum' }
+                          - { columnName: 'user_type', columnTitle: '用户类型', columnOnInsert: true, validateOnInsert: true, javaType: 'java.lang.Integer', queryOperator: 'eq', decodeEnumType: 'UpmsUserTypeEnum' }
+                          - { columnName: 'user_status', columnTitle: '用户状态', columnOnUpsert: true, validateOnUpsert: true, javaType: 'java.lang.Integer', queryOperator: 'in', decodeEnumType: 'UpmsUserStatusEnum' }
+                          - { columnName: 'source_type', columnTitle: '用户来源', columnOnInsert: true, validateOnInsert: true, javaType: 'java.lang.Integer', queryOperator: 'eq', decodeEnumType: 'UpmsUserSourceTypeEnum' }
                           - { columnName: 'remark', columnTitle: '用户备注', columnOnUpsert: true }
                           - { columnName: 'tenant_id', columnTitle: '所属租户ID', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
                           - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, queryOperator: 'gte,lte', selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
                           - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
-                      - domainEntityName: UaaRole
-                        domainEntityTable: uaa_role
-                        domainEntityTitle: UAA角色信息
+                      - domainEntityName: UpmsUserRole
+                        #领域实体对应的数据库表名
+                        domainEntityTable: upms_user_role
+                        #领域实体对象中文名称
+                        domainEntityTitle: UPMS用户角色绑定关系
+                        #领域实体对象别名(在方法命名、参数/变量命名、URL命名时使用)
+                        domainEntityAlias: UserRole
+                        #领域实体类型(intermediate:多对多情况下的中间关联关系实体)
+                        manyToManyConfig: {masterEntityName: UpmsUser, relateFieldNameOfMaster: 'user_id', slaveEntityName: UpmsRole, relateFieldNameOfSlave: 'role_id'}
+                        domainEntityColumns:
+                          - { columnName: 'user_id', columnTitle: '用户ID', idColumn: true }
+                          - { columnName: 'role_id', columnTitle: '角色ID', idColumn: true }
+                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
+                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
+                      - domainEntityName: UpmsRole
+                        domainEntityTable: upms_role
+                        domainEntityTitle: UPMS角色信息
                         domainEntityAlias: Role
                         domainEntityColumns:
                           - { columnName: 'role_id', columnTitle: '角色ID', idColumn: true, queryOperator: 'eq' }
                           - { columnName: 'role_name', columnTitle: '角色名称', columnOnUpsert: true, validateOnUpsert: true, queryOperator: 'likeRight' }
                           - { columnName: 'role_code', columnTitle: '角色代码', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
-                          - { columnName: 'role_type', columnTitle: '角色类型', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq', decodeEnumType: 'UaaRoleTypeEnum' }
+                          - { columnName: 'role_type', columnTitle: '角色类型', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq', decodeEnumType: 'UpmsRoleTypeEnum' }
                           - { columnName: 'role_desc', columnTitle: '角色描述', columnOnUpsert: true }
                           - { columnName: 'tenant_id', columnTitle: '所属租户ID', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
                           - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
                           - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
-                      - domainEntityName: UaaResource
-                        domainEntityTable: uaa_resource
-                        domainEntityTitle: UAA资源信息
+                      - domainEntityName: UpmsRoleResource
+                        #领域实体对应的数据库表名
+                        domainEntityTable: upms_role_resource
+                        #领域实体对象中文名称
+                        domainEntityTitle: UPMS角色资源绑定关系
+                        #领域实体对象别名(在方法命名、参数/变量命名、URL命名时使用)
+                        domainEntityAlias: RoleResource
+                        domainEntityColumns:
+                          - { columnName: 'role_id', columnTitle: '角色ID', idColumn: true }
+                          - { columnName: 'resource_id', columnTitle: '资源ID', idColumn: true }
+                          - { columnName: 'create_time', columnTitle: '创建时间', columnOnInsert: true, validateOnInsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
+                          - { columnName: 'update_time', columnTitle: '最近更新时间', columnOnUpsert: true, validateOnUpsert: true, selectClause: "DATE_FORMAT({name}, '%Y-%m-%d %T')" }
+                      - domainEntityName: UpmsResource
+                        domainEntityTable: upms_resource
+                        domainEntityTitle: UPMS资源信息
                         domainEntityAlias: Resource
                         domainEntityColumns:
                           - { columnName: 'resource_id', columnTitle: '资源ID', idColumn: true, queryOperator: 'eq' }
@@ -120,8 +146,8 @@ spring:
                           - { columnName: 'parent_resource_id', columnTitle: '父资源ID', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq' }
                           - { columnName: 'permission_expression', columnTitle: '权限表达式', columnOnUpsert: true, validateOnUpsert: true }
                           - { columnName: 'resource_url', columnTitle: '资源URL', columnOnUpsert: true, validateOnUpsert: true, queryOperator: 'likeRight' }
-                          - { columnName: 'resource_type', columnTitle: '资源类型', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq', decodeEnumType: 'UaaResourceTypeEnum' }
-                          - { columnName: 'action_type', columnTitle: '功能类型', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq', decodeEnumType: 'UaaResourceActionTypeEnum' }
+                          - { columnName: 'resource_type', columnTitle: '资源类型', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq', decodeEnumType: 'UpmsResourceTypeEnum' }
+                          - { columnName: 'action_type', columnTitle: '功能类型', columnOnInsert: true, validateOnInsert: true, queryOperator: 'eq', decodeEnumType: 'UpmsResourceActionTypeEnum' }
                           - { columnName: 'siblings_index', columnTitle: '兄弟节点间的排序值', columnOnUpsert: true, validateOnUpsert: true }
                           - { columnName: 'resource_icon_class', columnTitle: '资源ICON样式class', columnOnUpsert: true, validateOnUpsert: true }
                           - { columnName: 'resource_icon_style', columnTitle: '资源ICON样式css', columnOnUpsert: true, validateOnUpsert: true }
@@ -132,19 +158,19 @@ spring:
                     #领域聚合根(如果定义了聚合根，则后端会生成对应的{domainAggregateName}AppService)
                     domainAggregates:
                         #领域聚合根类名(为避免与实体对象命名冲突,聚合根统一以Aggregate结尾)
-                      - domainAggregateName: ProductAggregate
+                      - domainAggregateName: UpmsUserAggregate
                         #领域聚合根中文名称
-                        domainAggregateTitle: 商品
+                        domainAggregateTitle: UPMS用户
                         #领域聚合根别名(在方法命名、参数/变量命名、URL命名时使用)
-                        domainAggregateAlias: Product
+                        domainAggregateAlias: User
                         #领域聚合根的主要实体对象名称(指向domainEntities列表中的某一个)
-                        aggregateMasterEntity: ProductBaseInfo
+                        aggregateMasterEntity: UpmsUser
                         #领域聚合根的从属实体对象列表
                         aggregateSlaveEntities:
                             #领域聚合根的从属实体对象(指向domainEntities列表中的某一个)
-                          - aggregateSlaveEntity: ProductExtraInfo
+                          - aggregateSlaveEntity: UpmsUserRole
                             #主要领域对象与从属领域对象的映射关系(支持1:1/1:N)
-                            masterSlaveMapping: 'product_id:product_id=1:1'
+                            masterSlaveMapping: 'user_id:user_id=1:N'
                             #保存主要实体对象时是否也级联保存从属实体对象
                             cascadingOnUpsert: true
                             #新建主要实体对象时是否也级联新建从属实体对象
@@ -156,16 +182,6 @@ spring:
                             #更新主要实体对象时是否校验从属实体对象不为空(仅在cascadingOnUpdate=true时有效)
                             #validateOnUpdate: true
                             #聚合根的从属实体对象(指向domainEntities列表中的某一个)
-                          - aggregateSlaveEntity: ProductSaleSpec
-                            #主要领域对象与从属领域对象的映射关系(支持1:1/1:N)
-                            masterSlaveMapping: 'product_id:product_id=1:N'
-                            #保存主要实体对象时是否也级联保存从属实体对象
-                            cascadingOnUpsert: true
-                          - aggregateSlaveEntity: ProductSaleStock
-                            #主要领域对象与从属领域对象的映射关系(支持1:1/1:N)
-                            masterSlaveMapping: 'product_id:product_id=1:N'
-                            #保存主要实体对象时是否也级联保存从属实体对象
-                            cascadingOnUpsert: true
                 #Mybatis(DAL层)代码部分
                 mybatis:
                     javaMapperConfig:
