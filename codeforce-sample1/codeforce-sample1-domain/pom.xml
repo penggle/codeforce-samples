@@ -11,7 +11,7 @@
     <artifactId>codeforce-sample1-domain</artifactId>
     <packaging>pom</packaging>
     <name>codeforce-sample1-domain</name>
-    <description>领域层</description>
+    <description>领域层(包括领域模型、领域服务)</description>
 
     <!--
         应用服务层只能通过领域服务接口层(codeforce-sample1-domain-service-sdk)来访问数据，

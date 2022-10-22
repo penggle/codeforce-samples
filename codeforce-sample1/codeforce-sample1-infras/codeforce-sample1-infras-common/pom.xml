@@ -10,7 +10,7 @@
     </parent>
     <artifactId>codeforce-sample1-infras-common</artifactId>
     <name>codeforce-sample1-infras-common</name>
-    <description>基础设施层之通用工具、配置等</description>
+    <description>基础设施层之项目内通用工具、基础配置等</description>
 
     <dependencies>
         <!-- codeforce-common-core -->

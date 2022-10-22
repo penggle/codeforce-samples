@@ -11,7 +11,7 @@
     <artifactId>codeforce-sample1-api-runtime</artifactId>
     <packaging>pom</packaging>
     <name>codeforce-sample1-api-runtime</name>
-    <description>对外接口实现(支持SpringCloud、Dubbo两种类型接口)以及web前端接口都放在这里</description>
+    <description>提供给他方调用的接口实现(provider)</description>
 
     <dependencies>
         <!-- codeforce-sample1-api-provider -->

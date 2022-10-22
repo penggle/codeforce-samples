@@ -11,7 +11,7 @@
     <artifactId>codeforce-sample1-infras</artifactId>
     <packaging>pom</packaging>
     <name>codeforce-sample1-infras</name>
-    <description>基础设施层</description>
+    <description>基础设施层(包括项目内通用工具、基础配置、DAL等)</description>
 
     <modules>
         <module>codeforce-sample1-infras-dal</module>

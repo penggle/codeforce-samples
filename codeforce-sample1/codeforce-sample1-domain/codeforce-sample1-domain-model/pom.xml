@@ -10,7 +10,7 @@
     </parent>
     <artifactId>codeforce-sample1-domain-model</artifactId>
     <name>codeforce-sample1-domain-model</name>
-    <description>领域层之领域模型</description>
+    <description>领域层之领域模型(领域实体、值对象、聚合根)</description>
 
     <dependencies>
         <!-- mybatis-tiny-base -->

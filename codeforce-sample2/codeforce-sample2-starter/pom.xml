@@ -10,7 +10,7 @@
     </parent>
     <artifactId>codeforce-sample2-starter</artifactId>
     <name>codeforce-sample2-starter</name>
-    <description>示例SpringBoot启动模块</description>
+    <description>应用的SpringBoot启动模块</description>
 
     <dependencies>
         <!-- codeforce-common-config -->

@@ -10,7 +10,7 @@
     </parent>
     <artifactId>codeforce-sample2-api-consumer</artifactId>
     <name>codeforce-sample2-api-consumer</name>
-    <description>调用外部Feign接口声明</description>
+    <description>他方提供给我调用的接口(consumer)</description>
 
     <dependencies>
         <!-- codeforce-common-model -->
