@@ -1,10 +1,10 @@
 package com.penglecode.codeforce.samples.product.api.request;
 
 import com.penglecode.codeforce.common.model.BaseDTO;
-import com.penglecode.codeforce.samples.product.api.dto.ProductExtraSaveDTO;
-import com.penglecode.codeforce.samples.product.api.dto.ProductBaseSaveDTO;
-import com.penglecode.codeforce.samples.product.api.dto.ProductSaleSpecSaveDTO;
-import com.penglecode.codeforce.samples.product.api.dto.ProductSaleStockSaveDTO;
+import com.penglecode.codeforce.samples.product.api.model.ProductBaseInDTO;
+import com.penglecode.codeforce.samples.product.api.model.ProductExtraInDTO;
+import com.penglecode.codeforce.samples.product.api.model.ProductSaleSpecInDTO;
+import com.penglecode.codeforce.samples.product.api.model.ProductSaleStockInDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
@@ -16,43 +16,43 @@ import java.util.List;
  * @version 1.0
  */
 @Schema(description="创建商品请求DTO")
-public class SaveProductRequest extends ProductBaseSaveDTO implements BaseDTO {
+public class SaveProductRequest extends ProductBaseInDTO implements BaseDTO {
 
     private static final long serialVersionUID = 1L;
 
     /** 商品额外信息 */
     @Schema(description="商品额外信息")
-    private ProductExtraSaveDTO productExtra;
+    private ProductExtraInDTO productExtra;
 
     /** 商品销售规格信息列表 */
     @Schema(description="商品销售规格信息列表")
-    private List<ProductSaleSpecSaveDTO> productSaleSpecs;
+    private List<ProductSaleSpecInDTO> productSaleSpecs;
 
     /** 商品销售库存信息列表 */
     @Schema(description="商品销售库存信息列表")
-    private List<ProductSaleStockSaveDTO> productSaleStocks;
+    private List<ProductSaleStockInDTO> productSaleStocks;
 
-    public ProductExtraSaveDTO getProductExtra() {
+    public ProductExtraInDTO getProductExtra() {
         return productExtra;
     }
 
-    public void setProductExtra(ProductExtraSaveDTO productExtra) {
+    public void setProductExtra(ProductExtraInDTO productExtra) {
         this.productExtra = productExtra;
     }
 
-    public List<ProductSaleSpecSaveDTO> getProductSaleSpecs() {
+    public List<ProductSaleSpecInDTO> getProductSaleSpecs() {
         return productSaleSpecs;
     }
 
-    public void setProductSaleSpecs(List<ProductSaleSpecSaveDTO> productSaleSpecs) {
+    public void setProductSaleSpecs(List<ProductSaleSpecInDTO> productSaleSpecs) {
         this.productSaleSpecs = productSaleSpecs;
     }
 
-    public List<ProductSaleStockSaveDTO> getProductSaleStocks() {
+    public List<ProductSaleStockInDTO> getProductSaleStocks() {
         return productSaleStocks;
     }
 
-    public void setProductSaleStocks(List<ProductSaleStockSaveDTO> productSaleStocks) {
+    public void setProductSaleStocks(List<ProductSaleStockInDTO> productSaleStocks) {
         this.productSaleStocks = productSaleStocks;
     }
 

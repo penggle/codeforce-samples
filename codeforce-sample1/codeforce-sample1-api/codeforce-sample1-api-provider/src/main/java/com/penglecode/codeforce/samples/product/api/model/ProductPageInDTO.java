@@ -1,16 +1,16 @@
-package com.penglecode.codeforce.samples.product.api.request;
+package com.penglecode.codeforce.samples.product.api.model;
 
-import com.penglecode.codeforce.common.model.Page;
+import com.penglecode.codeforce.common.model.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
- * 查询商品请求DTO
+ * 商品分页查询参数DTO
  *
  * @author pengpeng
  * @version 1.0
  */
-@Schema(description="查询商品请求DTO")
-public class QueryProductRequest extends Page {
+@Schema(description="商品分页查询参数DTO")
+public class ProductPageInDTO implements BaseDTO {
 
     private static final long serialVersionUID = 1L;
 

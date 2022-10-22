@@ -1,4 +1,4 @@
-package com.penglecode.codeforce.samples.product.api.dto;
+package com.penglecode.codeforce.samples.product.api.model;
 
 import com.penglecode.codeforce.common.model.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @version 1.0
  */
 @Schema(description="商品销售规格信息保存(入站)DTO")
-public class ProductSaleSpecSaveDTO implements BaseDTO {
+public class ProductSaleSpecInDTO implements BaseDTO {
 
     private static final long serialVersionUID = 1L;
 

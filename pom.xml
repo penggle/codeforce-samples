@@ -12,12 +12,12 @@
 
     <properties>
         <springboot.version>2.5.14</springboot.version>
-        <springcloud.version>2020.0.3</springcloud.version>
-        <codeforce.version>2.5</codeforce.version>
+        <springcloud.version>2020.0.6</springcloud.version>
+        <codeforce.version>2.5.2-SNAPSHOT</codeforce.version>
 
         <mybatis-springboot.version>2.1.4</mybatis-springboot.version>
         <mybatis-tiny.version>3.5.1</mybatis-tiny.version>
-        <mybatis-springboot-mds.version>2.1</mybatis-springboot-mds.version>
+        <mds-spring-boot.version>2.1</mds-spring-boot.version>
         <mysql.version>8.0.25</mysql.version>
         <swagger3.version>2.1.12</swagger3.version>
         <springdoc.version>1.6.4</springdoc.version>
@@ -96,7 +96,7 @@
             <dependency>
                 <groupId>io.github.penggle</groupId>
                 <artifactId>mds-spring-boot-starter</artifactId>
-                <version>${mybatis-springboot-mds.version}</version>
+                <version>${mds-spring-boot.version}</version>
             </dependency>
 
             <!-- mybatis-spring-boot-starter -->

@@ -1,21 +1,21 @@
-package com.penglecode.codeforce.samples.product.api.dto;
+package com.penglecode.codeforce.samples.product.api.model;
 
 import com.penglecode.codeforce.common.model.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
- * 商品额外信息保存(入站)DTO
+ * 商品额外信息查询(出站)DTO
  *
  * @author AutoCodeGenerator
  * @version 1.0
  */
-@Schema(description="商品额外信息保存(入站)DTO")
-public class ProductExtraSaveDTO implements BaseDTO {
+@Schema(description="商品额外信息查询(出站)DTO")
+public class ProductExtraOutDTO implements BaseDTO {
 
     private static final long serialVersionUID = 1L;
 
     /** 商品ID */
-    @Schema(description="商品ID(修改时必填)")
+    @Schema(description="商品ID")
     private Long productId;
 
     /** 商品详情(HTML片段) */
@@ -29,6 +29,14 @@ public class ProductExtraSaveDTO implements BaseDTO {
     /** 商品服务(HTML片段) */
     @Schema(description="商品服务(HTML片段)")
     private String productServices;
+
+    /** 创建时间 */
+    @Schema(description="创建时间")
+    private String createTime;
+
+    /** 最近修改时间 */
+    @Schema(description="最近修改时间")
+    private String updateTime;
 
     public Long getProductId() {
         return productId;
@@ -60,6 +68,22 @@ public class ProductExtraSaveDTO implements BaseDTO {
 
     public void setProductServices(String productServices) {
         this.productServices = productServices;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
 }
